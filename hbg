@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+
+var program = require('commander')
+
+/*
+let author = 'qub1t'
+let numPatchesToGenerate = 64;
+let bankPath = '/Users/priebe/Library/Audio/Presets/Helm/helmgen';
+let folder = 'helmgen';
+let patchBase = 'helmgen';
+let perturbFactor = 0.1;
+*/
+
+program
+  .version('0.0.1', '-v, --version')
+  .option('-o, --output <filename>', 'MIDI file to write the beats to')
+  .parse(process.argv)
+
+if (!program.output) {
+  console.error('No output file specified.  Exiting.')
+  process.exit(1)
+}
+
+var MidiWriter = require('midi-writer-js')
+var PatternGenerator = require('./patternGenerator')
+
+const Configstore = require('configstore')
+const pkg = require('./package.json')
+const conf = new Configstore(pkg.name, {})
+
+var HbgKit = require('./hbgKit')
+var kit = new HbgKit()
+
+let drumMap = conf.get('drumMap')
+if (drumMap) {
+  kit.selectRandomDrums(drumMap)
+}
+
+var gen = new PatternGenerator(kit)
+var track = gen.generate()
+
+var w = new MidiWriter.Writer([track])
+var buffer = Buffer.from(w.buildFile())
+fs.writeFile(program.output, buffer, function (err) {
+  if (err) return console.log(err)
+})
