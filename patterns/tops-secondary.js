@@ -98,5 +98,23 @@ module.exports = [
       { drum: 'closedhat', velocity: 35, start: HBG.B141, duration: HBG.D16 },
       { drum: 'closedhat', velocity: 45, start: HBG.B144, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 'closedhat-downbeat-1',
+    weight: 4,
+    length: HBG.M2,
+    notes: [
+      { drum: 'closedhat', velocity: 45, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B211, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B231, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B241, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B242, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B243, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B244, duration: HBG.D16 }
+    ]
   }
 ]
