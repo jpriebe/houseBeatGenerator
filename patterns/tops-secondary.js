@@ -10,6 +10,7 @@ module.exports = [
   },
   {
     name: 'shaker-inject-1',
+    weight: 4,
     length: HBG.M1,
     notes: [
       { drum: 'shaker', velocity: 50, start: HBG.B114, duration: HBG.D16 },
@@ -33,7 +34,7 @@ module.exports = [
   },
   {
     name: 'shaker-sixteenths-1',
-    weight: 2,
+    weight: 4,
     length: HBG.M1,
     notes: [
       { drum: 'shaker', velocity: 30, start: HBG.B111, duration: HBG.D16 },
@@ -63,6 +64,39 @@ module.exports = [
       { drum: 'shaker', velocity: 35, start: HBG.B112, duration: HBG.D16 },
       { drum: 'shaker', velocity: 45, start: HBG.B113, duration: HBG.D16 },
       { drum: 'shaker', velocity: 35, start: HBG.B114, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'closedhat-inject-1',
+    weight: 4,
+    length: HBG.M1,
+    notes: [
+      { drum: 'closedhat', velocity: 45, start: HBG.B124, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 35, start: HBG.B144, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'closedhat-inject-2',
+    weight: 4,
+    length: HBG.M2,
+    notes: [
+      { drum: 'closedhat', velocity: 45, start: HBG.B124, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 35, start: HBG.B144, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'closedhat-shuffle-1',
+    weight: 4,
+    length: HBG.M1,
+    notes: [
+      { drum: 'closedhat', velocity: 35, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 35, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B124, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 35, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B134, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 35, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 45, start: HBG.B144, duration: HBG.D16 }
     ]
   }
 ]

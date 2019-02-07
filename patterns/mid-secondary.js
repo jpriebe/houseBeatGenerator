@@ -18,5 +18,15 @@ module.exports = [
       { drum: 'clap', velocity: 90, start: HBG.B244, duration: HBG.D16 },
       { drum: 'clap', velocity: 90, start: HBG.B444, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 'snare-1',
+    length: HBG.M2,
+    weight: 2,
+    notes: [
+      { drum: 'snare', velocity: 70, start: HBG.B214, duration: HBG.D16 },
+      { drum: 'snare', velocity: 70, start: HBG.B232, duration: HBG.D16 },
+      { drum: 'snare', velocity: 70, start: HBG.B234, duration: HBG.D16 }
+    ]
   }
 ]
