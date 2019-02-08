@@ -2,6 +2,13 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
+    name: 'tops-power-0',
+    weight: 3,
+    length: HBG.M1,
+    notes: [
+    ]
+  },
+  {
     name: 'rides-1',
     length: HBG.M1,
     notes: [

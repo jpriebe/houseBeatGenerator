@@ -2,6 +2,13 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
+    name: 'mid-secondary-0',
+    length: HBG.M1,
+    weight: 2,
+    notes: [
+    ]
+  },
+  {
     name: 'clap-1',
     length: HBG.M4,
     weight: 2,
@@ -21,12 +28,20 @@ module.exports = [
   },
   {
     name: 'snare-1',
-    length: HBG.M2,
+    length: HBG.M4,
+    weight: 2,
+    notes: [
+      { drum: 'snare', velocity: 70, start: HBG.B214, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'snare-2',
+    length: HBG.M4,
     weight: 2,
     notes: [
       { drum: 'snare', velocity: 70, start: HBG.B214, duration: HBG.D16 },
-      { drum: 'snare', velocity: 70, start: HBG.B232, duration: HBG.D16 },
-      { drum: 'snare', velocity: 70, start: HBG.B234, duration: HBG.D16 }
+      { drum: 'snare', velocity: 70, start: HBG.B234, duration: HBG.D16 },
+      { drum: 'snare', velocity: 70, start: HBG.B242, duration: HBG.D16 }
     ]
   }
 ]

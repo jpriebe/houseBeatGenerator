@@ -55,8 +55,10 @@ const sections = {
 }
 
 // TODO:
-//  - add support for concepts like 'hard-track', 'breakdown', 'build-up', 'fill', etc., where each layers a certain amount of patterns
 //  - add support for bar-4 / bar-8 fills?  or do you just put more patterns in?
+//  - support for pattern groups, where they are variants of a single pattern, but some harder than others; you could use
+//    the lighter one in hardtrack1, harder one in hardtrack3
+//  - more percussion options: perc1, perc2, percsharp, percdeep, percsyn (then perc patterns could call for different ones)
 //  - maybe add markers or cue points with these labels?
 //  - interactive mode:
 //      - keep the same pattern, try new kit
@@ -95,7 +97,7 @@ function patternGenerator (kit) {
         addNotes(selectedPatterns[patterns[i]], sectionOffset)
       }
 
-      sectionOffset += HBG.M4
+      sectionOffset += HBG.M8
     }
 
     return _track
@@ -140,11 +142,11 @@ function patternGenerator (kit) {
     let notes = pattern.notes
 
     let offset = 0
-    while (offset < HBG.M4) {
+    while (offset < HBG.M8) {
       for (let i = 0; i < notes.length; i++) {
         let note = JSON.parse(JSON.stringify(notes[i]))
         note.start += offset
-        if (note.start > HBG.M4) {
+        if (note.start > HBG.M8) {
           continue
         }
 
