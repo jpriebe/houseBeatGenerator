@@ -187,7 +187,6 @@ function patternGenerator (kit) {
     let xary = []
     for (let i = 0; i < notes.length; i++) {
       let note = JSON.parse(JSON.stringify(notes[i]))
-      let oldStart = note.start
       note.start = (note.start + shiftOffset) % patternLen
       xary.push(note)
     }
