@@ -27,6 +27,8 @@
     "@babel/core": "^7.2.2",
     "commander": "^2.19.0",
     "configstore": "^4.0.0",
+    "midi": "^0.9.5",
+    "midi-player-js": "^2.0.5",
     "midi-writer-js": "^1.6.0"
   },
   "devDependencies": {

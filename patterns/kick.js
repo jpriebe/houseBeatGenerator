@@ -66,7 +66,7 @@ module.exports = [
     ]
   },
   {
-    name: 'four-on-the-floor-w-sumpin-extra-2',
+    name: 'four-on-the-floor-w-sumpin-extra-3',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -86,7 +86,7 @@ module.exports = [
       { drum: 'kick', velocity: 90, start: HBG.B421, duration: HBG.D16 },
       { drum: 'kick', velocity: 90, start: HBG.B431, duration: HBG.D16 },
       { drum: 'kick', velocity: 90, start: HBG.B434, duration: HBG.D16 },
-      { drum: 'kick', velocity: 90, start: HBG.B442, duration: HBG.D16 }
+      { drum: 'kick', velocity: 90, start: HBG.B443, duration: HBG.D16 }
     ]
   },
   {

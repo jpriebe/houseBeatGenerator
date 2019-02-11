@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const midi = require('midi')
+const MidiPlayer = require('midi-player-js')
+var MidiWriter = require('midi-writer-js')
 const fs = require('fs')
 
 var program = require('commander')
@@ -23,7 +26,6 @@ if (!program.output) {
   process.exit(1)
 }
 
-var MidiWriter = require('midi-writer-js')
 var PatternGenerator = require('./patternGenerator')
 
 const Configstore = require('configstore')
@@ -43,6 +45,26 @@ var track = gen.generate()
 
 var w = new MidiWriter.Writer([track])
 var buffer = Buffer.from(w.buildFile())
-fs.writeFile(program.output, buffer, function (err) {
+fs.writeFileSync(program.output, buffer, function (err) {
   if (err) return console.log(err)
 })
+
+var output = new midi.output()
+var portCount = output.getPortCount()
+console.log('port count: ' + portCount)
+output.openPort(0)
+
+// Initialize player and register event handler
+var Player = new MidiPlayer.Player(function (event) {
+  if (event.name === 'Note on') {
+    output.sendMessage([144, event.noteNumber, event.velocity])
+  }
+  if (event.name === 'Note off') {
+    output.sendMessage([128, event.noteNumber, event.velocity])
+  }
+})
+
+// Load a MIDI file
+Player.loadFile(program.output)
+Player.setTempo(127)
+Player.play()
