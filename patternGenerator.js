@@ -1,7 +1,7 @@
 var HBG = require('./hbgDefs.js')
 var MidiWriter = require('midi-writer-js')
 
-const patterns = {
+const _patterns = {
   'kick': require('./patterns/kick'),
   'mid-primary': require('./patterns/mid-primary'),
   'mid-secondary': require('./patterns/mid-secondary'),
@@ -11,7 +11,7 @@ const patterns = {
   'perc': require('./patterns/perc')
 }
 
-const sections = {
+const _sections = {
   'mixin': [
     'kick',
     'tops-primary'
@@ -66,35 +66,59 @@ const sections = {
 function patternGenerator (kit) {
   let _shiftMsg = ''
   let _drums = {}
+  let _selectedPatterns = []
   let _track = null
+  let _swingInterval = 32
+  let _swingPercentage = 50
 
-  this.generate = function () {
-    _track = new MidiWriter.Track()
-    _drums = kit.getDrums()
+  _drums = kit.getDrums()
 
-    let selectedPatterns = []
+  this.getSections = function () {
+    return JSON.parse(JSON.stringify(_sections))
+  }
+
+  this.selectPatterns = function () {
+    _selectedPatterns = []
 
     console.log('PATTERNS')
-    for (var identifier in patterns) {
-      if (!patterns.hasOwnProperty(identifier)) {
+    for (var identifier in _patterns) {
+      if (!_patterns.hasOwnProperty(identifier)) {
         continue
       }
 
-      selectedPatterns[identifier] = selectPattern(identifier)
+      _selectedPatterns[identifier] = selectPattern(identifier)
+    }
+  }
+
+  this.setSwing = function (swingInterval, swingPercentage) {
+    _swingInterval = swingInterval
+    _swingPercentage = swingPercentage
+  }
+
+  this.generate = function (sections) {
+    _track = new MidiWriter.Track()
+    let section = null
+
+    if (typeof sections === 'undefined') {
+      sections = []
+      for (section in _sections) {
+        sections.push(section)
+      }
     }
 
     console.log('SECTIONS')
-    let i = 0
+    let i = 0; let j = 0
     let sectionOffset = 0
-    for (var section in sections) {
+    for (i = 0; i < sections.length; i++) {
+      section = sections[i]
       console.log(' - ' + section)
-      let patterns = sections[section]
-      for (i = 0; i < patterns.length; i++) {
-        if (typeof selectedPatterns[patterns[i]] === 'undefined') {
+      let patterns = _sections[section]
+      for (j = 0; j < patterns.length; j++) {
+        if (typeof _selectedPatterns[patterns[j]] === 'undefined') {
           continue
         }
-        console.log('    - ' + patterns[i])
-        addNotes(selectedPatterns[patterns[i]], sectionOffset)
+        console.log('    - ' + patterns[j])
+        addNotes(_selectedPatterns[patterns[j]], sectionOffset)
       }
 
       sectionOffset += HBG.M8
@@ -104,7 +128,7 @@ function patternGenerator (kit) {
   }
 
   function selectPattern (identifier) {
-    let availPatterns = patterns[identifier]
+    let availPatterns = _patterns[identifier]
     let i = 0
 
     let xary = []
@@ -123,7 +147,7 @@ function patternGenerator (kit) {
 
     console.log(' - ' + identifier + ': ' + selPattern.name + _shiftMsg)
 
-    let notes = selPattern.notes
+    let notes = JSON.parse(JSON.stringify(selPattern.notes))
 
     // some pattern types we can shift by fixed amounts to provide extra variation
     if (identifier.match(/perc|tops-secondary/)) {
@@ -155,6 +179,7 @@ function patternGenerator (kit) {
         }
 
         note.start += sectionOffset
+        note = addSwing(note)
         let o = convertNoteToMidi(note, _drums[note.drum])
         _track.addEvent(o)
       }
@@ -186,12 +211,26 @@ function patternGenerator (kit) {
     _shiftMsg = ' - shifting by ' + shiftOffset + ' ticks (mod ' + patternLen + ')'
     let xary = []
     for (let i = 0; i < notes.length; i++) {
-      let note = JSON.parse(JSON.stringify(notes[i]))
+      let note = notes[i]
       note.start = (note.start + shiftOffset) % patternLen
       xary.push(note)
     }
 
     return xary
+  }
+
+  function addSwing (note) {
+    if (_swingPercentage === 50) {
+      return note
+    }
+
+    if (((note.start / _swingInterval) % 2) === 1) {
+      let delta = Math.round((_swingPercentage - 50) / 100 * 2 * _swingInterval)
+      note.start += delta
+      note.duration -= delta
+    }
+
+    return note
   }
 
   function convertNoteToMidi (note, drum) {

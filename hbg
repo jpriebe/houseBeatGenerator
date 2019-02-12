@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const midi = require('midi')
-const MidiPlayer = require('midi-player-js')
+const MidiEngine = require('./midiEngine')
 var MidiWriter = require('midi-writer-js')
 const fs = require('fs')
+const tmp = require('tmp')
 
 var program = require('commander')
 
@@ -18,11 +18,38 @@ let perturbFactor = 0.1;
 
 program
   .version('0.0.1', '-v, --version')
+  .option('-s, --swing-interval <swing-interval>', 'swing interval, either 8 or 16')
+  .option('-S, --swing-percentage <swing-percentage>', 'swing percentage, 25 to 75')
   .option('-o, --output <filename>', 'MIDI file to write the beats to')
+  .option('-p, --preview', 'preview MIDI')
+  .option('-m, --midi-port <port num>', 'MIDI port num')
+  .option('-t, --tempo', 'tempo (in bpm) for preview, defaults to 127')
+  .option('-l, --list-midi-ports', 'list MIDI ports')
   .parse(process.argv)
 
+if (program.listMidiPorts) {
+  let me = new MidiEngine()
+  me.listMidiPorts()
+  process.exit(0)
+}
 if (!program.output) {
   console.error('No output file specified.  Exiting.')
+  process.exit(1)
+}
+if (program.swingInterval === 8) {
+  program.swingInterval = 64
+} else {
+  program.swingInterval = 32
+}
+if (!program.swingPercentage) {
+  program.swingPercentage = 50
+}
+if (!program.tempo) {
+  program.tempo = 127
+}
+
+if (program.preview && (typeof program.midiPort === 'undefined')) {
+  console.error('Must specify a MIDI port number when using the -p option.')
   process.exit(1)
 }
 
@@ -40,31 +67,28 @@ if (drumMap) {
   kit.selectRandomDrums(drumMap)
 }
 
-var gen = new PatternGenerator(kit)
-var track = gen.generate()
+let gen = new PatternGenerator(kit)
+gen.selectPatterns()
+gen.setSwing(16, 50)
+let track = gen.generate()
 
-var w = new MidiWriter.Writer([track])
-var buffer = Buffer.from(w.buildFile())
+let w = new MidiWriter.Writer([track])
+let buffer = Buffer.from(w.buildFile())
 fs.writeFileSync(program.output, buffer, function (err) {
   if (err) return console.log(err)
 })
 
-var output = new midi.output()
-var portCount = output.getPortCount()
-console.log('port count: ' + portCount)
-output.openPort(0)
+let e = new MidiEngine()
+if (program.preview) {
+  gen.setSwing(program.swingInterval, program.swingPercentage)
+  let previewTrack = gen.generate(['hardtrack2'])
+  w = new MidiWriter.Writer([previewTrack])
+  buffer = Buffer.from(w.buildFile())
+  let tmpobj = tmp.fileSync()
+  fs.writeFileSync(tmpobj.name, buffer, function (err) {
+    if (err) return console.log(err)
+  })
 
-// Initialize player and register event handler
-var Player = new MidiPlayer.Player(function (event) {
-  if (event.name === 'Note on') {
-    output.sendMessage([144, event.noteNumber, event.velocity])
-  }
-  if (event.name === 'Note off') {
-    output.sendMessage([128, event.noteNumber, event.velocity])
-  }
-})
-
-// Load a MIDI file
-Player.loadFile(program.output)
-Player.setTempo(127)
-Player.play()
+  e.openPort(program.midiPort)
+  e.playFile(tmpobj.name, program.tempo)
+}
