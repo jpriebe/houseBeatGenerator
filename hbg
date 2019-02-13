@@ -90,12 +90,18 @@ function writeFullTrack () {
 }
 
 var _previewFile = ''
+var _previewSection = 'hardtrack2'
 buildUI()
 
 function onUiCallback (e) {
   switch (e.action) {
     case 'new-sound':
       kit.selectRandomDrum(e.val)
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'new-section':
+      _previewSection = e.val
       generatePreviewTrack()
       startPreview()
       break
@@ -108,7 +114,20 @@ function onUiCallback (e) {
     case 'play':
       startPreview()
       break
-    case 'reset':
+    case 'stop':
+      me.stop()
+      break
+    case 'regen-kit':
+      kit.selectRandomDrums()
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'regen-pat':
+      gen.selectPatterns()
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'regen-all':
       kit.selectRandomDrums()
       gen.selectPatterns()
       generatePreviewTrack()
@@ -128,7 +147,7 @@ function startPreview () {
 function generatePreviewTrack () {
   gen.setSwing(program.swingInterval, program.swingPercentage)
 
-  let track = gen.generate(['hardtrack2'], 8)
+  let track = gen.generate([_previewSection], 8)
   let w = new MidiWriter.Writer([track])
   let buffer = Buffer.from(w.buildFile())
   let tmpobj = tmp.fileSync()
@@ -150,9 +169,14 @@ function buildUI () {
   }
   drums = xary
 
+  let sections = [
+    'hardtrack1',
+    'hardtrack2',
+    'hardtrack3'
+  ]
   let components = gen.getPatternIdentifiers()
 
   let ui = require('./ui')
-  let u = new ui(components, drums, onUiCallback)
+  let u = new ui(sections, components, drums, onUiCallback)
   u.create()
 }

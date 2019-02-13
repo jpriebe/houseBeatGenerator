@@ -1,8 +1,9 @@
 var cursed = require('blessed')
 
-function ui (components, drums, callback) {
+function ui (sections, components, drums, callback) {
   let _screen = null
 
+  let _sections = sections
   let _components = components
   let _drums = drums
   let _callback = callback
@@ -23,6 +24,7 @@ function ui (components, drums, callback) {
       vi: true
     })
 
+    let i = 0
     let x = 2
     let y = 3
 
@@ -44,15 +46,60 @@ function ui (components, drums, callback) {
     addButton(form, tabOrder, x, y, 'play', 'play')
     tabOrder++
     x += 20
-    addButton(form, tabOrder, x, y, 'reset', 'reset')
+    addButton(form, tabOrder, x, y, 'stop', 'stop')
     tabOrder++
     x += 20
     addButton(form, tabOrder, x, y, 'save', 'save')
     tabOrder++
     x += 20
 
+    y += 3
+    x = 14
+    addButton(form, tabOrder, x, y, 'regen-kit', 'regen-kit')
+    tabOrder++
+    x += 20
+    addButton(form, tabOrder, x, y, 'regen-pat', 'regen-pat')
+    tabOrder++
+    x += 20
+    addButton(form, tabOrder, x, y, 'regen-all', 'regen-all')
+    tabOrder++
+    x += 20
+
     x = 2
-    y += 6
+    y += 5
+
+    l = cursed.text({
+      name: 'text-sections',
+      content: 'sections',
+      top: y,
+      left: x,
+      shrink: true,
+      bold: true,
+      padding: {
+        top: 1,
+        bottom: 1
+      }
+    })
+    _screen.append(l)
+
+    i = 0
+    x = 14
+    for (i = 0; i < _sections.length; i++) {
+      let s = _sections[i]
+
+      addButton(form, tabOrder, x, y, s, 'new-section')
+      tabOrder++
+
+      if (tabOrder % 3) {
+        x += 20
+      } else {
+        x = 14
+        y += 3
+      }
+    }
+
+    x = 2
+    y += 2
 
     l = cursed.text({
       name: 'text-drums',
@@ -68,7 +115,7 @@ function ui (components, drums, callback) {
     })
     _screen.append(l)
 
-    let i = 0
+    i = 0
     x = 14
     for (i = 0; i < _drums.length; i++) {
       let d = _drums[i]
@@ -80,7 +127,7 @@ function ui (components, drums, callback) {
         x += 20
       } else {
         x = 14
-        y += 4
+        y += 3
       }
     }
 
@@ -111,7 +158,7 @@ function ui (components, drums, callback) {
         x += 20
       } else {
         x = 14
-        y += 4
+        y += 3
       }
     }
 
@@ -125,10 +172,10 @@ function ui (components, drums, callback) {
     _screen.render()
   }
 
-  let navRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0]
-  let navLeft = [8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-  let navUp = [15, 13, 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  let navDown = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1, 2]
+  let navRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0]
+  let navLeft = [24, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  let navUp = [24, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+  let navDown = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 0]
 
   function addButton (form, tabOrder, x, y, v, action) {
     let b = cursed.button({
