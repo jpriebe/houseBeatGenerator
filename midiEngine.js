@@ -4,6 +4,8 @@ const MidiPlayer = require('midi-player-js')
 function midiEngine () {
   let _output = null
   let _player = null
+  let _file = ''
+  let _tempo = 120
 
   init()
 
@@ -18,6 +20,12 @@ function midiEngine () {
       if (event.name === 'Note off') {
         _output.sendMessage([128, event.noteNumber, event.velocity])
       }
+    })
+
+    _player.on('endOfFile', function () {
+      _player.stop()
+      _player.resetTracks()
+      _player.play()
     })
   }
 
@@ -47,7 +55,13 @@ function midiEngine () {
     _output.openPort(portNum)
   }
 
+  this.stop = function () {
+    _player.stop()
+  }
+
   this.playFile = function (filename, tempo) {
+    _file = filename
+    _tempo = tempo
     _player.loadFile(filename)
     _player.setTempo(tempo)
     _player.play()

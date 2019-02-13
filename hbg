@@ -64,31 +64,95 @@ var kit = new HbgKit()
 
 let drumMap = conf.get('drumMap')
 if (drumMap) {
-  kit.selectRandomDrums(drumMap)
+  kit.setDrumMap(drumMap)
+  kit.selectRandomDrums()
 }
+
+let me = new MidiEngine()
 
 let gen = new PatternGenerator(kit)
 gen.selectPatterns()
-gen.setSwing(16, 50)
-let track = gen.generate()
 
-let w = new MidiWriter.Writer([track])
-let buffer = Buffer.from(w.buildFile())
-fs.writeFileSync(program.output, buffer, function (err) {
-  if (err) return console.log(err)
-})
+if (!program.preview) {
+  writeFullTrack()
+  process.exit(0)
+}
 
-let e = new MidiEngine()
-if (program.preview) {
-  gen.setSwing(program.swingInterval, program.swingPercentage)
-  let previewTrack = gen.generate(['hardtrack2'])
-  w = new MidiWriter.Writer([previewTrack])
-  buffer = Buffer.from(w.buildFile())
-  let tmpobj = tmp.fileSync()
-  fs.writeFileSync(tmpobj.name, buffer, function (err) {
+function writeFullTrack () {
+  gen.setSwing(16, 50)
+  let track = gen.generate(null, 16)
+
+  let w = new MidiWriter.Writer([track])
+  let buffer = Buffer.from(w.buildFile())
+  fs.writeFileSync(program.output, buffer, function (err) {
     if (err) return console.log(err)
   })
+}
 
-  e.openPort(program.midiPort)
-  e.playFile(tmpobj.name, program.tempo)
+var _previewFile = ''
+buildUI()
+
+function onUiCallback (e) {
+  switch (e.action) {
+    case 'new-sound':
+      kit.selectRandomDrum(e.val)
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'new-pattern':
+      console.log('selecting new pattern for ' + e.val)
+      gen.selectPattern(e.val)
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'play':
+      startPreview()
+      break
+    case 'reset':
+      kit.selectRandomDrums()
+      gen.selectPatterns()
+      generatePreviewTrack()
+      startPreview()
+      break
+    case 'save':
+      writeFullTrack()
+      break
+  }
+}
+
+function startPreview () {
+  me.stop()
+  me.playFile(_previewFile, program.tempo)
+}
+
+function generatePreviewTrack () {
+  gen.setSwing(program.swingInterval, program.swingPercentage)
+
+  let track = gen.generate(['hardtrack2'], 8)
+  let w = new MidiWriter.Writer([track])
+  let buffer = Buffer.from(w.buildFile())
+  let tmpobj = tmp.fileSync()
+  _previewFile = tmpobj.name
+  fs.writeFileSync(_previewFile, buffer, function (err) {
+    if (err) return console.log(err)
+  })
+}
+
+function buildUI () {
+  me.openPort(program.midiPort)
+
+  generatePreviewTrack()
+
+  let drums = kit.getDrums()
+  let xary = []
+  for (let d in drums) {
+    xary.push(d)
+  }
+  drums = xary
+
+  let components = gen.getPatternIdentifiers()
+
+  let ui = require('./ui')
+  let u = new ui(components, drums, onUiCallback)
+  u.create()
 }

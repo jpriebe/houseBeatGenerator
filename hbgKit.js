@@ -1,6 +1,8 @@
 var hbgKit = function () {
+  let _drumMap = null
+
   // default to general midi; might later add volume to each drum to keep levels balanced
-  let drums = {
+  let _drums = {
     'kick': { pitch: 'C2' },
     'snare': { pitch: 'D2' },
     'openhat': { pitch: 'F#2' },
@@ -12,30 +14,35 @@ var hbgKit = function () {
     'perc2': { pitch: 'E4' }
   }
 
-  this.selectRandomDrums = function (drumMap) {
-    console.log('DRUM KIT')
-
-    for (var identifier in drums) {
-      if (!drums.hasOwnProperty(identifier)) {
-        continue
-      }
-
-      selectRandomDrum(identifier, drumMap)
-    }
+  this.setDrumMap = function (drumMap) {
+    _drumMap = drumMap
   }
 
-  function selectRandomDrum (identifier, drumMap) {
-    if (typeof drumMap[identifier] === 'undefined') {
+  this.selectRandomDrums = function () {
+    if (_drumMap === null) {
       return
     }
 
-    let pitch = drumMap[identifier][Math.floor(Math.random() * drumMap[identifier].length)]
-    drums[identifier].pitch = pitch
-    console.log(' - ' + identifier + ': ' + drums[identifier].pitch)
+    for (var identifier in _drums) {
+      if (!_drums.hasOwnProperty(identifier)) {
+        continue
+      }
+
+      this.selectRandomDrum(identifier)
+    }
+  }
+
+  this.selectRandomDrum = function (identifier) {
+    if ((_drumMap === null) || (typeof _drumMap[identifier] === 'undefined')) {
+      return
+    }
+
+    let pitch = _drumMap[identifier][Math.floor(Math.random() * _drumMap[identifier].length)]
+    _drums[identifier].pitch = pitch
   }
 
   this.getDrums = function () {
-    return drums
+    return _drums
   }
 }
 

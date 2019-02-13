@@ -77,60 +77,40 @@ function patternGenerator (kit) {
     return JSON.parse(JSON.stringify(_sections))
   }
 
-  this.selectPatterns = function () {
-    _selectedPatterns = []
-
-    console.log('PATTERNS')
+  this.getPatternIdentifiers = function () {
+    let xary = []
     for (var identifier in _patterns) {
       if (!_patterns.hasOwnProperty(identifier)) {
         continue
       }
 
-      _selectedPatterns[identifier] = selectPattern(identifier)
-    }
-  }
-
-  this.setSwing = function (swingInterval, swingPercentage) {
-    _swingInterval = swingInterval
-    _swingPercentage = swingPercentage
-  }
-
-  this.generate = function (sections) {
-    _track = new MidiWriter.Track()
-    let section = null
-
-    if (typeof sections === 'undefined') {
-      sections = []
-      for (section in _sections) {
-        sections.push(section)
-      }
+      xary.push(identifier)
     }
 
-    console.log('SECTIONS')
-    let i = 0; let j = 0
-    let sectionOffset = 0
-    for (i = 0; i < sections.length; i++) {
-      section = sections[i]
-      console.log(' - ' + section)
-      let patterns = _sections[section]
-      for (j = 0; j < patterns.length; j++) {
-        if (typeof _selectedPatterns[patterns[j]] === 'undefined') {
-          continue
-        }
-        console.log('    - ' + patterns[j])
-        addNotes(_selectedPatterns[patterns[j]], sectionOffset)
+    return xary
+  }
+
+  this.selectPatterns = function () {
+    _selectedPatterns = []
+
+    for (var identifier in _patterns) {
+      if (!_patterns.hasOwnProperty(identifier)) {
+        continue
       }
 
-      sectionOffset += HBG.M8
+      this.selectPattern(identifier)
     }
-
-    return _track
   }
 
-  function selectPattern (identifier) {
+  this.selectPattern = function (identifier) {
     let availPatterns = _patterns[identifier]
-    let i = 0
 
+    if (!availPatterns) {
+      console.error('No available patterns for drum "' + identifier + '"')
+      return
+    }
+
+    let i = 0
     let xary = []
     for (i = 0; i < availPatterns.length; i++) {
       let p = availPatterns[i]
@@ -145,8 +125,6 @@ function patternGenerator (kit) {
 
     let selPattern = xary[Math.floor(Math.random() * xary.length)]
 
-    console.log(' - ' + identifier + ': ' + selPattern.name + _shiftMsg)
-
     let notes = JSON.parse(JSON.stringify(selPattern.notes))
 
     // some pattern types we can shift by fixed amounts to provide extra variation
@@ -159,14 +137,48 @@ function patternGenerator (kit) {
       selPattern.notes = notes
     }
 
-    return selPattern
+    _selectedPatterns[identifier] = selPattern
   }
 
-  function addNotes (pattern, sectionOffset) {
+  this.setSwing = function (swingInterval, swingPercentage) {
+    _swingInterval = swingInterval
+    _swingPercentage = swingPercentage
+  }
+
+  this.generate = function (sections, sectionBars) {
+    _track = new MidiWriter.Track()
+    let section = null
+
+    if (sections === null) {
+      sections = []
+      for (section in _sections) {
+        sections.push(section)
+      }
+    }
+
+    let i = 0; let j = 0
+    let sectionOffset = 0
+    for (i = 0; i < sections.length; i++) {
+      section = sections[i]
+      let patterns = _sections[section]
+      for (j = 0; j < patterns.length; j++) {
+        if (typeof _selectedPatterns[patterns[j]] === 'undefined') {
+          continue
+        }
+        addNotes(_selectedPatterns[patterns[j]], sectionOffset, sectionBars)
+      }
+
+      sectionOffset += sectionBars * HBG.M1
+    }
+
+    return _track
+  }
+
+  function addNotes (pattern, sectionOffset, sectionBars) {
     let notes = pattern.notes
 
     let offset = 0
-    while (offset < HBG.M8) {
+    while (offset < sectionBars * HBG.M1) {
       for (let i = 0; i < notes.length; i++) {
         let note = JSON.parse(JSON.stringify(notes[i]))
         note.start += offset

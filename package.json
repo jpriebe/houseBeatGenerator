@@ -25,6 +25,7 @@
   "homepage": "https://github.com/jpriebe/houseBeatGenerator#readme",
   "dependencies": {
     "@babel/core": "^7.2.2",
+    "blessed": "^0.1.81",
     "commander": "^2.19.0",
     "configstore": "^4.0.0",
     "midi": "^0.9.5",
