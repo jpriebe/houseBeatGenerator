@@ -106,7 +106,6 @@ function onUiCallback (e) {
       startPreview()
       break
     case 'new-pattern':
-      console.log('selecting new pattern for ' + e.val)
       gen.selectPattern(e.val)
       generatePreviewTrack()
       startPreview()
