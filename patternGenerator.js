@@ -177,12 +177,14 @@ function patternGenerator (kit) {
   function addNotes (pattern, sectionOffset, sectionBars) {
     let notes = pattern.notes
 
+    let sectionLen = sectionBars * HBG.M1
+
     let offset = 0
-    while (offset < sectionBars * HBG.M1) {
+    while (offset < sectionLen) {
       for (let i = 0; i < notes.length; i++) {
         let note = JSON.parse(JSON.stringify(notes[i]))
         note.start += offset
-        if (note.start > HBG.M8) {
+        if (note.start > sectionLen) {
           continue
         }
 
