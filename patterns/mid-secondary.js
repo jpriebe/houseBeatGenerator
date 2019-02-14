@@ -13,8 +13,8 @@ module.exports = [
     length: HBG.M4,
     weight: 2,
     notes: [
-      { drum: 'clap', velocity: 90, start: HBG.B242, duration: HBG.D16 },
-      { drum: 'clap', velocity: 90, start: HBG.B442, duration: HBG.D16 }
+      { drum: 'clap', velocity: 60, start: HBG.B242, duration: HBG.D16 },
+      { drum: 'clap', velocity: 60, start: HBG.B442, duration: HBG.D16 }
     ]
   },
   {
@@ -22,8 +22,8 @@ module.exports = [
     length: HBG.M4,
     weight: 2,
     notes: [
-      { drum: 'clap', velocity: 90, start: HBG.B244, duration: HBG.D16 },
-      { drum: 'clap', velocity: 90, start: HBG.B444, duration: HBG.D16 }
+      { drum: 'clap', velocity: 60, start: HBG.B244, duration: HBG.D16 },
+      { drum: 'clap', velocity: 60, start: HBG.B444, duration: HBG.D16 }
     ]
   },
   {
@@ -31,7 +31,7 @@ module.exports = [
     length: HBG.M4,
     weight: 2,
     notes: [
-      { drum: 'snare', velocity: 70, start: HBG.B214, duration: HBG.D16 }
+      { drum: 'snare', velocity: 60, start: HBG.B214, duration: HBG.D16 }
     ]
   },
   {
@@ -39,9 +39,9 @@ module.exports = [
     length: HBG.M4,
     weight: 2,
     notes: [
-      { drum: 'snare', velocity: 70, start: HBG.B214, duration: HBG.D16 },
-      { drum: 'snare', velocity: 70, start: HBG.B234, duration: HBG.D16 },
-      { drum: 'snare', velocity: 70, start: HBG.B242, duration: HBG.D16 }
+      { drum: 'snare', velocity: 60, start: HBG.B214, duration: HBG.D16 },
+      { drum: 'snare', velocity: 60, start: HBG.B234, duration: HBG.D16 },
+      { drum: 'snare', velocity: 60, start: HBG.B242, duration: HBG.D16 }
     ]
   }
 ]
