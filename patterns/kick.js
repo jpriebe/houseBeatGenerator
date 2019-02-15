@@ -161,5 +161,37 @@ module.exports = [
       { drum: 'kick', velocity: 90, start: HBG.B131, duration: HBG.D16 },
       { drum: 'kick', velocity: 90, start: HBG.B141, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 'kicks-08',
+    length: HBG.M2,
+    weight: 1,
+    notes: [
+      { drum: 'kick', velocity: 90, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B113, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B211, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B231, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B241, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'kicks-09',
+    length: HBG.M2,
+    weight: 1,
+    notes: [
+      { drum: 'kick', velocity: 90, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B211, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B231, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B233, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B241, duration: HBG.D16 }
+    ]
   }
 ]
