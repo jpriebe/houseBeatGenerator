@@ -2,7 +2,7 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
-    name: 'clap-1',
+    name: 'm-p-1',
     length: HBG.M1,
     weight: 20,
     notes: [
@@ -11,15 +11,15 @@ module.exports = [
     ]
   },
   {
-    name: 'clap-1-soft',
+    name: 'm-p-2',
     length: HBG.M1,
     notes: [
-      { drum: 'clap', velocity: 60, start: HBG.B121, duration: HBG.D16 },
-      { drum: 'clap', velocity: 60, start: HBG.B141, duration: HBG.D16 }
+      { drum: 'clap', velocity: 70, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'clap', velocity: 70, start: HBG.B141, duration: HBG.D16 }
     ]
   },
   {
-    name: 'clap-1-fill1',
+    name: 'm-p-3',
     length: HBG.M4,
     notes: [
       { drum: 'clap', velocity: 90, start: HBG.B121, duration: HBG.D16 },
@@ -34,7 +34,7 @@ module.exports = [
     ]
   },
   {
-    name: 'clap-1-fill2',
+    name: 'm-p-4',
     length: HBG.M4,
     notes: [
       { drum: 'clap', velocity: 90, start: HBG.B121, duration: HBG.D16 },
@@ -50,7 +50,7 @@ module.exports = [
     ]
   },
   {
-    name: 'clap-1-fill3',
+    name: 'm-p-5',
     length: HBG.M4,
     notes: [
       { drum: 'clap', velocity: 90, start: HBG.B121, duration: HBG.D16 },
@@ -67,7 +67,7 @@ module.exports = [
     ]
   },
   {
-    name: 'clap-2',
+    name: 'm-p-6',
     weight: 3,
     length: HBG.M2,
     notes: [
@@ -87,7 +87,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-1-fill1',
+    name: 'm-p-7',
     length: HBG.M4,
     notes: [
       { drum: 'snare', velocity: 70, start: HBG.B121, duration: HBG.D16 },
@@ -102,7 +102,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-1-fill2',
+    name: 'm-p-8',
     length: HBG.M4,
     notes: [
       { drum: 'snare', velocity: 70, start: HBG.B121, duration: HBG.D16 },
@@ -118,7 +118,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-1-fill3',
+    name: 'm-p-9',
     length: HBG.M4,
     notes: [
       { drum: 'snare', velocity: 70, start: HBG.B121, duration: HBG.D16 },
@@ -134,7 +134,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-1-fill4',
+    name: 'm-p-10',
     length: HBG.M4,
     notes: [
       { drum: 'snare', velocity: 70, start: HBG.B121, duration: HBG.D16 },

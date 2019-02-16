@@ -2,7 +2,7 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
-    name: 'four-on-the-floor',
+    name: 'k-1',
     length: HBG.M2,
     notes: [
       { drum: 'kick', velocity: 90, start: HBG.B111, duration: HBG.D16 },
@@ -16,7 +16,7 @@ module.exports = [
     ]
   },
   {
-    name: 'four-on-the-floor-w-sumpin-extra',
+    name: 'k-2',
     length: HBG.M4,
     weight: 4,
     notes: [
@@ -40,7 +40,7 @@ module.exports = [
     ]
   },
   {
-    name: 'four-on-the-floor-w-sumpin-extra-2',
+    name: 'k-3',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -66,7 +66,7 @@ module.exports = [
     ]
   },
   {
-    name: 'four-on-the-floor-w-sumpin-extra-3',
+    name: 'k-4',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -90,7 +90,7 @@ module.exports = [
     ]
   },
   {
-    name: 'four-on-the-floor-w-sumpin-missin',
+    name: 'k-5',
     length: HBG.M4,
     weight: 1,
     notes: [
@@ -112,7 +112,7 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-06',
+    name: 'k-6a',
     length: HBG.M1,
     weight: 1,
     notes: [
@@ -125,7 +125,7 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-06a',
+    name: 'k-6b',
     length: HBG.M1,
     weight: 1,
     notes: [
@@ -137,7 +137,7 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-06b',
+    name: 'k-6c',
     length: HBG.M1,
     weight: 1,
     notes: [
@@ -150,7 +150,7 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-07',
+    name: 'k-7',
     length: HBG.M1,
     weight: 1,
     notes: [
@@ -163,7 +163,7 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-08',
+    name: 'k-8a',
     length: HBG.M2,
     weight: 1,
     notes: [
@@ -179,7 +179,31 @@ module.exports = [
     ]
   },
   {
-    name: 'kicks-09',
+    name: 'k-8b',
+    length: HBG.M4,
+    weight: 1,
+    notes: [
+      { drum: 'kick', velocity: 90, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B113, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B211, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B231, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B241, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B311, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B321, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B331, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B341, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B411, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B421, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B431, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B441, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'k-9a',
     length: HBG.M2,
     weight: 1,
     notes: [
@@ -192,6 +216,30 @@ module.exports = [
       { drum: 'kick', velocity: 90, start: HBG.B231, duration: HBG.D16 },
       { drum: 'kick', velocity: 90, start: HBG.B233, duration: HBG.D16 },
       { drum: 'kick', velocity: 90, start: HBG.B241, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'k-9b',
+    length: HBG.M4,
+    weight: 1,
+    notes: [
+      { drum: 'kick', velocity: 90, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B211, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B231, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B233, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B241, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B311, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B321, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B331, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B341, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B411, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B421, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B431, duration: HBG.D16 },
+      { drum: 'kick', velocity: 90, start: HBG.B441, duration: HBG.D16 }
     ]
   }
 ]

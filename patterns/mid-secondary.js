@@ -1,15 +1,14 @@
 var HBG = require('../hbgDefs.js')
-
 module.exports = [
   {
-    name: 'mid-secondary-0',
+    name: 'm-s-0',
     length: HBG.M1,
     weight: 20,
     notes: [
     ]
   },
   {
-    name: 'clap-1',
+    name: 'm-s-1',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -18,7 +17,7 @@ module.exports = [
     ]
   },
   {
-    name: 'clap-2',
+    name: 'm-s-2',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -27,7 +26,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-1',
+    name: 'm-s-3',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -35,7 +34,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-2',
+    name: 'm-s-4',
     length: HBG.M4,
     weight: 2,
     notes: [
@@ -45,7 +44,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-3',
+    name: 'm-s-5',
     length: HBG.M2,
     notes: [
       { drum: 'snare', velocity: 60, start: HBG.B243, duration: HBG.D16 },
@@ -53,7 +52,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-3',
+    name: 'm-s-6',
     length: HBG.M2,
     weight: 2,
     notes: [
@@ -63,7 +62,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-4',
+    name: 'm-s-7',
     length: HBG.M2,
     weight: 2,
     notes: [
@@ -76,7 +75,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-5',
+    name: 'm-s-8',
     length: HBG.M2,
     weight: 2,
     notes: [
@@ -91,7 +90,7 @@ module.exports = [
     ]
   },
   {
-    name: 'snare-6',
+    name: 'm-s-9',
     length: HBG.M2,
     weight: 2,
     notes: [

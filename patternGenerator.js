@@ -1,5 +1,6 @@
 var HBG = require('./hbgDefs.js')
 var MidiWriter = require('midi-writer-js')
+var sprintf = require('sprintf-js').sprintf
 
 const _patterns = {
   'kick': require('./patterns/kick'),
@@ -55,18 +56,20 @@ const _sections = {
 }
 
 // TODO:
-//  - add support for bar-4 / bar-8 fills?  or do you just put more patterns in?
+//  - add support for bar-4 / bar-8 fills?  like you could take a 1-bar fill and replace all the notes in the
+//    mid-primary's last bar with the notes from the fill; or do you just put more patterns in, some with
+//    fills and some without?
+//  - perc pairs -- sometimes it's fun to try random combinations of percussion, but sometimes it would be nice to have
+//    two tuned toms or two congas, etc.
+//  - more percussion options: perc1, perc2, percsharp, percdeep, percsyn (then perc patterns could call for different ones)
 //  - support for pattern groups, where they are variants of a single pattern, but some harder than others; you could use
 //    the lighter one in hardtrack1, harder one in hardtrack3
-//  - more percussion options: perc1, perc2, percsharp, percdeep, percsyn (then perc patterns could call for different ones)
 //  - maybe add markers or cue points with these labels?
-//  - interactive mode:
-//      - keep the same pattern, try new kit
-//      - keep the same kit, try new variants
 function patternGenerator (kit) {
   let _shiftMsg = ''
   let _drums = {}
   let _selectedPatterns = []
+  let _selectedPatternNames = []
   let _track = null
   let _swingInterval = 32
   let _swingPercentage = 50
@@ -88,6 +91,15 @@ function patternGenerator (kit) {
     }
 
     return xary
+  }
+
+  this.getPatternList = function () {
+    let xary = []
+    for (var p in _selectedPatternNames) {
+      xary.push(sprintf('%-14s %-4s', p, _selectedPatternNames[p]))
+    }
+
+    return xary.join('\n')
   }
 
   this.selectPatterns = function () {
@@ -127,6 +139,8 @@ function patternGenerator (kit) {
 
     let notes = JSON.parse(JSON.stringify(selPattern.notes))
 
+    _selectedPatternNames[identifier] = selPattern.name
+
     // some pattern types we can shift by fixed amounts to provide extra variation
     if (identifier.match(/perc|tops-secondary/)) {
       if (typeof selPattern.shiftProbability === 'undefined') {
@@ -135,6 +149,7 @@ function patternGenerator (kit) {
 
       notes = shift(notes, selPattern.shiftProbability, selPattern.length)
       selPattern.notes = notes
+      _selectedPatternNames[identifier] += ' (shifted)'
     }
 
     _selectedPatterns[identifier] = selPattern

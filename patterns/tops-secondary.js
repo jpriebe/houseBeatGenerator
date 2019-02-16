@@ -2,14 +2,14 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
-    name: 'tops-secondary-0',
+    name: 't-s-0',
     weight: 2,
     length: HBG.M1,
     notes: [
     ]
   },
   {
-    name: 'shaker-inject-1',
+    name: 't-s-1',
     weight: 4,
     length: HBG.M1,
     notes: [
@@ -18,7 +18,7 @@ module.exports = [
     ]
   },
   {
-    name: 'shaker-eighths-1',
+    name: 't-s-1',
     weight: 2,
     length: HBG.M1,
     notes: [
@@ -33,7 +33,7 @@ module.exports = [
     ]
   },
   {
-    name: 'shaker-sixteenths-1',
+    name: 't-s-2',
     weight: 4,
     length: HBG.M1,
     notes: [
@@ -56,7 +56,7 @@ module.exports = [
     ]
   },
   {
-    name: 'shaker-sixteenths-1-start-stop',
+    name: 't-s-3',
     weight: 1,
     length: HBG.M4,
     notes: [
@@ -67,7 +67,7 @@ module.exports = [
     ]
   },
   {
-    name: 'closedhat-inject-1',
+    name: 't-s-4',
     weight: 4,
     length: HBG.M1,
     notes: [
@@ -76,7 +76,7 @@ module.exports = [
     ]
   },
   {
-    name: 'closedhat-inject-2',
+    name: 't-2-5',
     weight: 4,
     length: HBG.M2,
     notes: [
@@ -85,7 +85,7 @@ module.exports = [
     ]
   },
   {
-    name: 'closedhat-shuffle-1',
+    name: 't-s-6',
     weight: 4,
     length: HBG.M1,
     notes: [
@@ -100,7 +100,7 @@ module.exports = [
     ]
   },
   {
-    name: 'closedhat-downbeat-1',
+    name: 't-s-7',
     weight: 4,
     length: HBG.M2,
     notes: [
@@ -115,6 +115,38 @@ module.exports = [
       { drum: 'closedhat', velocity: 45, start: HBG.B242, duration: HBG.D16 },
       { drum: 'closedhat', velocity: 45, start: HBG.B243, duration: HBG.D16 },
       { drum: 'closedhat', velocity: 45, start: HBG.B244, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 't-s-8',
+    weight: 4,
+    length: HBG.M2,
+    notes: [
+      { drum: 'closedhat', velocity: 75, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 75, start: HBG.B224, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 75, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 75, start: HBG.B224, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 75, start: HBG.B232, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 't-s-9',
+    weight: 4,
+    length: HBG.M2,
+    notes: [
+      { drum: 'openhat', velocity: 45, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'openhat', velocity: 45, start: HBG.B224, duration: HBG.D16 },
+      { drum: 'openhat', velocity: 45, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'openhat', velocity: 45, start: HBG.B224, duration: HBG.D16 },
+      { drum: 'openhat', velocity: 45, start: HBG.B232, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 't-s-10',
+    length: HBG.M2,
+    notes: [
+      { drum: 'openhat', velocity: 90, start: HBG.B124, duration: HBG.D16 },
+      { drum: 'openhat', velocity: 90, start: HBG.B144, duration: HBG.D16 }
     ]
   }
 ]

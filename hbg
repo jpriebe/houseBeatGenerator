@@ -7,6 +7,8 @@ const tmp = require('tmp')
 
 var program = require('commander')
 
+let _u = null
+
 /*
 let author = 'qub1t'
 let numPatchesToGenerate = 64;
@@ -121,6 +123,12 @@ function onUiCallback (e) {
       generatePreviewTrack()
       startPreview()
       break
+    case 'show-kit':
+      _u.showMessage(kit.getDrumList())
+      break
+    case 'show-pat':
+      _u.showMessage(gen.getPatternList())
+      break
     case 'regen-pat':
       gen.selectPatterns()
       generatePreviewTrack()
@@ -146,7 +154,7 @@ function startPreview () {
 function generatePreviewTrack () {
   gen.setSwing(program.swingInterval, program.swingPercentage)
 
-  let track = gen.generate([_previewSection], 8)
+  let track = gen.generate([_previewSection], 16)
   let w = new MidiWriter.Writer([track])
   let buffer = Buffer.from(w.buildFile())
   let tmpobj = tmp.fileSync()
@@ -176,6 +184,6 @@ function buildUI () {
   let components = gen.getPatternIdentifiers()
 
   let ui = require('./ui')
-  let u = new ui(sections, components, drums, onUiCallback)
-  u.create()
+  _u = new ui(sections, components, drums, onUiCallback)
+  _u.create()
 }

@@ -1,3 +1,5 @@
+var sprintf = require('sprintf-js').sprintf
+
 var hbgKit = function () {
   let _drumMap = null
 
@@ -16,6 +18,15 @@ var hbgKit = function () {
 
   this.setDrumMap = function (drumMap) {
     _drumMap = drumMap
+  }
+
+  this.getDrumList = function () {
+    let xary = []
+    for (var d in _drums) {
+      xary.push(sprintf('%-10s %-4s', d, _drums[d].pitch))
+    }
+
+    return xary.join('\n')
   }
 
   this.selectRandomDrums = function () {

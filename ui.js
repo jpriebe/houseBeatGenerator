@@ -9,6 +9,31 @@ function ui (sections, components, drums, callback) {
   let _callback = callback
   let _buttons = []
 
+  this.showMessage = function (msg) {
+    let lines = msg.split('\n')
+    let maxLength = 0
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].length > maxLength) {
+        maxLength = lines[i].length
+      }
+    }
+
+    let padding = 2
+    let m = cursed.message({
+      parent: _screen,
+      top: 'center',
+      left: 'center',
+      width: maxLength + 2 * padding + 2,
+      height: lines.length + 2 * padding + 2,
+      padding: padding,
+      border: {
+        type: 'line'
+      },
+      timeout: 0
+    })
+    m.display(msg, -1)
+  }
+
   this.create = function () {
     let tabOrder = 0
     // Create a screen object.
@@ -26,7 +51,7 @@ function ui (sections, components, drums, callback) {
 
     let i = 0
     let x = 2
-    let y = 3
+    let y = 1
 
     let l = cursed.text({
       name: 'text-actions',
@@ -51,7 +76,6 @@ function ui (sections, components, drums, callback) {
     x += 20
     addButton(form, tabOrder, x, y, 'save', 'save')
     tabOrder++
-    x += 20
 
     y += 3
     x = 14
@@ -63,10 +87,17 @@ function ui (sections, components, drums, callback) {
     x += 20
     addButton(form, tabOrder, x, y, 'regen-all', 'regen-all')
     tabOrder++
+
+    y += 3
+    x = 14
+    addButton(form, tabOrder, x, y, 'show-kit', 'show-kit')
+    tabOrder++
     x += 20
+    addButton(form, tabOrder, x, y, 'show-pat', 'show-pat')
+    tabOrder++
 
     x = 2
-    y += 5
+    y += 4
 
     l = cursed.text({
       name: 'text-sections',
@@ -90,7 +121,7 @@ function ui (sections, components, drums, callback) {
       addButton(form, tabOrder, x, y, s, 'new-section')
       tabOrder++
 
-      if (tabOrder % 3) {
+      if ((i + 1) % 3) {
         x += 20
       } else {
         x = 14
@@ -99,7 +130,7 @@ function ui (sections, components, drums, callback) {
     }
 
     x = 2
-    y += 2
+    y += 1
 
     l = cursed.text({
       name: 'text-drums',
@@ -123,7 +154,7 @@ function ui (sections, components, drums, callback) {
       addButton(form, tabOrder, x, y, d, 'new-sound')
       tabOrder++
 
-      if (tabOrder % 3) {
+      if ((i + 1) % 3) {
         x += 20
       } else {
         x = 14
@@ -132,7 +163,7 @@ function ui (sections, components, drums, callback) {
     }
 
     x = 2
-    y += 2
+    y += 1
     l = cursed.text({
       name: 'text-components',
       content: 'components',
@@ -154,7 +185,7 @@ function ui (sections, components, drums, callback) {
       addButton(form, tabOrder, x, y, c, 'new-pattern')
       tabOrder++
 
-      if (tabOrder % 3) {
+      if ((i + 1) % 3) {
         x += 20
       } else {
         x = 14
@@ -172,10 +203,10 @@ function ui (sections, components, drums, callback) {
     _screen.render()
   }
 
-  let navRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0]
-  let navLeft = [24, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-  let navUp = [24, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
-  let navDown = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 0]
+  let navRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 0]
+  let navLeft = [26, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+  let navDown = [3, 4, 5, 6, 7, 10, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 1, 2, 0]
+  let navUp = [26, 24, 25, 0, 1, 2, 3, 4, 6, 7, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 
   function addButton (form, tabOrder, x, y, v, action) {
     let b = cursed.button({
