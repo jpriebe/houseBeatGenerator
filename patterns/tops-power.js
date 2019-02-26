@@ -2,14 +2,14 @@ var HBG = require('../hbgDefs.js')
 
 module.exports = [
   {
-    name: 't-p-0',
+    name: 't-pow-0',
     weight: 3,
     length: HBG.M1,
     notes: [
     ]
   },
   {
-    name: 't-p-1',
+    name: 't-pow-1',
     length: HBG.M1,
     notes: [
       { drum: 'ride', velocity: 90, start: HBG.B113, duration: HBG.D16 },
