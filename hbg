@@ -25,7 +25,7 @@ program
   .option('-o, --output <filename>', 'MIDI file to write the beats to')
   .option('-p, --preview', 'preview MIDI')
   .option('-m, --midi-port <port num>', 'MIDI port num')
-  .option('-t, --tempo', 'tempo (in bpm) for preview, defaults to 127')
+  .option('-t, --tempo <tempo>', 'tempo (in bpm) for preview, defaults to 127')
   .option('-l, --list-midi-ports', 'list MIDI ports')
   .parse(process.argv)
 
