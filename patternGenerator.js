@@ -66,7 +66,6 @@ const _sections = {
 //    the lighter one in hardtrack1, harder one in hardtrack3
 //  - maybe add markers or cue points with these labels?
 function patternGenerator (kit) {
-  let _shiftMsg = ''
   let _drums = {}
   let _selectedPatterns = []
   let _selectedPatternNames = []
@@ -147,9 +146,11 @@ function patternGenerator (kit) {
         selPattern.shiftProbability = 0.2
       }
 
-      notes = shift(notes, selPattern.shiftProbability, selPattern.length)
-      selPattern.notes = notes
-      _selectedPatternNames[identifier] += ' (shifted)'
+      let newNotes = shift(notes, selPattern.shiftProbability, selPattern.length)
+      if (JSON.stringify(notes) !== JSON.stringify(newNotes)) {
+        _selectedPatternNames[identifier] += ' (shifted)'
+      }
+      selPattern.notes = newNotes
     }
 
     _selectedPatterns[identifier] = selPattern
@@ -231,16 +232,15 @@ function patternGenerator (kit) {
       shiftOffsets = [HBG.B211, HBG.B311, HBG.B411]
     }
 
-    _shiftMsg = ''
     if (Math.random() > shiftProb) {
       return notes
     }
 
     let shiftOffset = shiftOffsets[Math.floor(Math.random() * shiftOffsets.length)]
-    _shiftMsg = ' - shifting by ' + shiftOffset + ' ticks (mod ' + patternLen + ')'
+
     let xary = []
     for (let i = 0; i < notes.length; i++) {
-      let note = notes[i]
+      let note = JSON.parse(JSON.stringify(notes[i]))
       note.start = (note.start + shiftOffset) % patternLen
       xary.push(note)
     }
