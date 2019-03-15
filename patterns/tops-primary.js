@@ -59,5 +59,17 @@ module.exports = [
       { drum: 'closedhat', velocity: 90, start: HBG.B433, duration: HBG.D16 },
       { drum: 'closedhat', velocity: 90, start: HBG.B443, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 't-pri-5',
+    length: HBG.M1,
+    weight: 2,
+    notes: [
+      { drum: 'closedhat', velocity: 90, start: HBG.B113, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 90, start: HBG.B123, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 90, start: HBG.B133, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 75, start: HBG.B134, duration: HBG.D16 },
+      { drum: 'closedhat', velocity: 90, start: HBG.B143, duration: HBG.D16 }
+    ]
   }
 ]

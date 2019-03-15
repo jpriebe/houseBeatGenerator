@@ -99,5 +99,26 @@ module.exports = [
       { drum: 'snare', velocity: 70, start: HBG.B224, duration: HBG.D16 },
       { drum: 'snare', velocity: 60, start: HBG.B232, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 'm-s-10',
+    length: HBG.M1,
+    weight: 2,
+    notes: [
+      { drum: 'snare', velocity: 65, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'snare', velocity: 65, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'snare', velocity: 65, start: HBG.B134, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'm-s-10a',
+    length: HBG.M2,
+    weight: 2,
+    notes: [
+      { drum: 'snare', velocity: 65, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'snare', velocity: 65, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'snare', velocity: 65, start: HBG.B134, duration: HBG.D16 },
+      { drum: 'snare', velocity: 65, start: HBG.B214, duration: HBG.D16 }
+    ]
   }
 ]
