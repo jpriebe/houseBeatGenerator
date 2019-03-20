@@ -148,5 +148,23 @@ module.exports = [
       { drum: 'openhat', velocity: 90, start: HBG.B124, duration: HBG.D16 },
       { drum: 'openhat', velocity: 90, start: HBG.B144, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 't-s-11',
+    length: HBG.M1,
+    notes: [
+      { drum: 'shaker', velocity: 35, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 25, start: HBG.B112, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B121, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 25, start: HBG.B122, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B124, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B131, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 25, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B134, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B141, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 25, start: HBG.B142, duration: HBG.D16 },
+      { drum: 'shaker', velocity: 35, start: HBG.B144, duration: HBG.D16 },
+    ]
   }
 ]

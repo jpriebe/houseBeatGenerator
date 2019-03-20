@@ -390,6 +390,34 @@ module.exports = [
       { drum: 'perc1', velocity: 65, start: HBG.B134, duration: HBG.D16 },
       { drum: 'perc1', velocity: 65, start: HBG.B214, duration: HBG.D16 }
     ]
+  },
+  {
+    name: 'p-22',
+    length: HBG.M1,
+    weight: 2,
+    notes: [
+      { drum: 'perc1', velocity: 65, start: HBG.B113, duration: HBG.D16 },
+      { drum: 'perc1', velocity: 65, start: HBG.B132, duration: HBG.D16 },
+      { drum: 'perc1', velocity: 65, start: HBG.B141, duration: HBG.D16 }
+    ]
+  },
+  {
+    name: 'p-23',
+    length: HBG.M4,
+    weight: 2,
+    notes: [
+      { drum: 'perc2', velocity: 65, start: HBG.B111, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B112, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B114, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 45, start: HBG.B212, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B213, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B221, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 45, start: HBG.B312, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B313, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B321, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 45, start: HBG.B412, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B414, duration: HBG.D16 },
+      { drum: 'perc2', velocity: 65, start: HBG.B422, duration: HBG.D16 }
+    ]
   }
-
 ]
