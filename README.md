@@ -63,6 +63,12 @@ a MIDI port to send the notes to.
 On Mac, you need to turn on a virtual MIDI bus:
 https://help.ableton.com/hc/en-us/articles/209774225-Using-virtual-MIDI-buses
 
+On Windows, you will need to install software to get a virtual midi port.  Here are two alternatives:
+
+- loopMidi: http://www.tobias-erichsen.de/software/loopmidi.html
+- MidiYoke, as part of MIDIOX: http://www.midiox.com/
+
+
 Example usage:
 
 ```
