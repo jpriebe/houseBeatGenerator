@@ -1,4 +1,7 @@
 # houseBeatGenerator
+
+*NOTE: this requires version 1.7.1 or greater of midi-writer-js.  As of this writing, it is not available in npm.  You will have to manually acquire and install version 1.7.1.*
+
 Generates MIDI files with house beats.  Will generate 16-bar sections of
 
 - mixin
